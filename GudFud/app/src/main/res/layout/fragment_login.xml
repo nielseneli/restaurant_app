@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.margaret.gudfud.LoginFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:height="400dp"
+        android:inputType="textPersonName"
+        android:hint="username"
+        android:gravity="center_horizontal"
+        android:background="@drawable/edittext_border"
+        android:id="@+id/username"/>
+    <EditText
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:inputType="textVisiblePassword"
+        android:hint="password"
+        android:gravity="center"
+        android:layout_below="@id/username"
+        android:background="@drawable/edittext_border"
+        android:id="@+id/password"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_user_button"
+        android:layout_below="@+id/password"
+        android:text="Create new user"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_button"
+        android:layout_below="@+id/password"
+        android:text="Login"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="right"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>
