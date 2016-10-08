@@ -13,28 +13,28 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * A list adapter for the menu items. .
+ * A list adapter for the menu from the customer's view.
  */
-public class MenuItemsListAdapter extends ArrayAdapter<MenuItem>{
-    @BindView(R.id.tvText) TextView tvtext;
+public class CustomerMenuListAdapter extends ArrayAdapter<MenuItem>{
+    @BindView(R.id.tvText) TextView tvText;
     private ArrayList<MenuItem> items;
 
-    public MenuItemsListAdapter(Context context, ArrayList<MenuItem> items) {
+    public CustomerMenuListAdapter(Context context, ArrayList<MenuItem> items) {
         super(context, 0, items);
         this.items = items;
     }
 
-    @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final MenuItem item = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item_cook, parent, false);
         }
 
+        ButterKnife.bind(this, convertView);
 
+        tvText.setText(item.getName());
 
-        // Return the completed view to render on screen
         return convertView;
-        }
     }
+}
