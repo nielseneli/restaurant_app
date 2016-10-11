@@ -40,7 +40,7 @@ public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
         //onClick, you'll eventually go to the item view page.
         tvText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                //go to the item fragment
             }
         });
 

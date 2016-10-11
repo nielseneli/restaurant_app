@@ -1,7 +1,9 @@
 package com.margaret.gudfud;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +19,12 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Optional;
 
 /**
  * the fragment for the customer's menu
  */
 public class CustomerMenuFragment extends Fragment{
-
-    @BindView(R.id.listViewCustomer) ListView listView;
-    @BindView(R.id.customerCheckedTextView) CheckedTextView checkedTextView;
 
     public CustomerMenuFragment() {
 
@@ -34,10 +34,18 @@ public class CustomerMenuFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_menu_customer, container, false);
+        View tvView = inflater.inflate(R.layout.menu_item_customer, container, false);
 
-        ButterKnife.bind(this, view);
+        ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
+        CheckedTextView checkedTextView = (CheckedTextView) tvView.findViewById(R.id.customerCheckedTextView);
 
-        ArrayList<MenuItem> list = new ArrayList<MenuItem>();
+        if (listView == null){
+            Log.d("ButterSadness", "where tf is the listView");
+        } else {
+            Log.d("ButterSadness", "succes");
+        }
+
+        ArrayList<MenuItem> list = new ArrayList<>();
 
         final CustomerMenuListAdapter customerAdapter = new CustomerMenuListAdapter(getActivity(), list);
 
@@ -57,12 +65,16 @@ public class CustomerMenuFragment extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // When clicked, do something...
-                CheckedTextView ctv = (CheckedTextView)view;
-                if(ctv.isChecked()){
-                    Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
-                }
+
+                    CheckedTextView ctv = (CheckedTextView) view.findViewById(R.id.customerCheckedTextView);
+                    if (ctv.isChecked()) {
+                        Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
+                        ctv.setSelected(false);
+                    } else {
+                        Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
+                        ctv.setSelected(true);
+                    }
+
             }
         });
 
