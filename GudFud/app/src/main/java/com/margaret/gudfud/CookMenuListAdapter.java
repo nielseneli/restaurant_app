@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
  * A list adapter for the cook's menu items.
  */
 public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
-    @BindView(R.id.tvText) TextView tvText;
+    @BindView(R.id.cookMenuText) TextView tvText;
     private ArrayList<MenuItem> items;
 
     public CookMenuListAdapter(Context context, ArrayList<MenuItem> items) {

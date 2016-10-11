@@ -1,6 +1,7 @@
 package com.margaret.gudfud;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
  * A list adapter for the menu from the customer's view.
  */
 public class CustomerMenuListAdapter extends ArrayAdapter<MenuItem>{
-    @BindView(R.id.tvText) TextView tvText;
+    @BindView(R.id.customerCheckedTextView) TextView tvText;
     private ArrayList<MenuItem> items;
 
     public CustomerMenuListAdapter(Context context, ArrayList<MenuItem> items) {
@@ -28,7 +29,7 @@ public class CustomerMenuListAdapter extends ArrayAdapter<MenuItem>{
         final MenuItem item = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item_cook, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item_customer, parent, false);
         }
 
         ButterKnife.bind(this, convertView);
@@ -37,4 +38,6 @@ public class CustomerMenuListAdapter extends ArrayAdapter<MenuItem>{
 
         return convertView;
     }
+
+
 }
