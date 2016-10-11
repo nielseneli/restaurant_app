@@ -39,12 +39,6 @@ public class CustomerMenuFragment extends Fragment{
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
         CheckedTextView checkedTextView = (CheckedTextView) tvView.findViewById(R.id.customerCheckedTextView);
 
-        if (listView == null){
-            Log.d("ButterSadness", "where tf is the listView");
-        } else {
-            Log.d("ButterSadness", "succes");
-        }
-
         ArrayList<MenuItem> list = new ArrayList<>();
 
         final CustomerMenuListAdapter customerAdapter = new CustomerMenuListAdapter(getActivity(), list);
@@ -55,7 +49,9 @@ public class CustomerMenuFragment extends Fragment{
         testIngredients.add("goat's blood");
 
         MenuItem testItem1 = new MenuItem("cookies", testIngredients);
+        MenuItem testItem2 = new MenuItem("pasta with marmalade", testIngredients);
         customerAdapter.add(testItem1);
+        customerAdapter.add(testItem2);
 
         listView.setAdapter(customerAdapter);
         listView.setItemsCanFocus(false);
@@ -69,10 +65,10 @@ public class CustomerMenuFragment extends Fragment{
                     CheckedTextView ctv = (CheckedTextView) view.findViewById(R.id.customerCheckedTextView);
                     if (ctv.isChecked()) {
                         Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
-                        ctv.setSelected(false);
+                        ctv.setChecked(false);
                     } else {
                         Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
-                        ctv.setSelected(true);
+                        ctv.setChecked(true);
                     }
 
             }
