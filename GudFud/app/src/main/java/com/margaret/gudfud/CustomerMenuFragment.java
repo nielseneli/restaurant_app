@@ -56,7 +56,6 @@ public class CustomerMenuFragment extends Fragment{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // When clicked, do something...
 
                     CheckedTextView ctv = (CheckedTextView) view.findViewById(R.id.customerCheckedTextView);
                     if (ctv.isChecked()) {
