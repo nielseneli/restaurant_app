@@ -40,6 +40,7 @@ public class CookMenuFragment extends Fragment{
 
         ArrayList<MenuItem> list = itemsDbHelper.getAllItems();
         final CookMenuListAdapter listAdapter = new CookMenuListAdapter(getActivity(), list);
+        listView.setAdapter(listAdapter);
 
         addItemButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

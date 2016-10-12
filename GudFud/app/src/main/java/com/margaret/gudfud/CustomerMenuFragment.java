@@ -1,5 +1,6 @@
 package com.margaret.gudfud;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,19 +41,11 @@ public class CustomerMenuFragment extends Fragment{
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
         Button button = (Button) view.findViewById(R.id.button);
 
-        final ArrayList<MenuItem> list = new ArrayList<>();
+        ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
+        final SQLiteDatabase db = itemsDbHelper.getReadableDatabase();
 
+        final ArrayList<MenuItem> list = itemsDbHelper.getAllItems();
         final CustomerMenuListAdapter customerAdapter = new CustomerMenuListAdapter(getActivity(), list);
-
-        ArrayList<String> testIngredients = new ArrayList<>();
-        testIngredients.add("milk");
-        testIngredients.add("flour");
-        testIngredients.add("goat's blood");
-
-        MenuItem testItem1 = new MenuItem("cookies", testIngredients);
-        MenuItem testItem2 = new MenuItem("pasta with marmalade", testIngredients);
-        customerAdapter.add(testItem1);
-        customerAdapter.add(testItem2);
 
         //source for a fair bit of this: http://kb4dev.com/tutorial/android-listview/android-listview-with-checkbox
         listView.setAdapter(customerAdapter);
