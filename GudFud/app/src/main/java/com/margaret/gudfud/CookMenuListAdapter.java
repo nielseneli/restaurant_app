@@ -1,10 +1,14 @@
 package com.margaret.gudfud;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +22,9 @@ import butterknife.ButterKnife;
 public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
     @BindView(R.id.cookMenuText) TextView tvText;
     private ArrayList<MenuItem> items;
+
+    ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
+    final SQLiteDatabase db = itemsDbHelper.getWritableDatabase();
 
     public CookMenuListAdapter(Context context, ArrayList<MenuItem> items) {
         super(context, 0, items);
@@ -36,6 +43,7 @@ public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
         ButterKnife.bind(this, convertView);
 
         tvText.setText(item.getName());
+        notifyDataSetChanged();
 
         //onClick, you'll eventually go to the item view page.
         tvText.setOnClickListener(new View.OnClickListener() {

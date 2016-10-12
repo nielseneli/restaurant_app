@@ -1,5 +1,6 @@
 package com.margaret.gudfud;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,19 +41,11 @@ public class CustomerMenuFragment extends Fragment{
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
         Button button = (Button) view.findViewById(R.id.button);
 
-        ArrayList<MenuItem> list = new ArrayList<>();
+        ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
+        final SQLiteDatabase db = itemsDbHelper.getReadableDatabase();
 
+        final ArrayList<MenuItem> list = itemsDbHelper.getAllItems();
         final CustomerMenuListAdapter customerAdapter = new CustomerMenuListAdapter(getActivity(), list);
-
-        ArrayList<String> testIngredients = new ArrayList<>();
-        testIngredients.add("milk");
-        testIngredients.add("flour");
-        testIngredients.add("goat's blood");
-
-        MenuItem testItem1 = new MenuItem("cookies", testIngredients);
-        MenuItem testItem2 = new MenuItem("pasta with marmalade", testIngredients);
-        customerAdapter.add(testItem1);
-        customerAdapter.add(testItem2);
 
         //source for a fair bit of this: http://kb4dev.com/tutorial/android-listview/android-listview-with-checkbox
         listView.setAdapter(customerAdapter);
@@ -63,13 +56,12 @@ public class CustomerMenuFragment extends Fragment{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // When clicked, do something...
 
                     CheckedTextView ctv = (CheckedTextView) view.findViewById(R.id.customerCheckedTextView);
                     if (ctv.isChecked()) {
                         Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
                         ctv.setChecked(false);
-                        checkedPositions.add(position);
+                        checkedPositions.remove(new Integer(position));
 
                     } else {
                         Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
@@ -83,7 +75,12 @@ public class CustomerMenuFragment extends Fragment{
 
         button.setOnClickListener(new AdapterView.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getContext(), "" + checkedPositions, Toast.LENGTH_LONG).show();
+                String checked = "";
+                for (int i=0; i < checkedPositions.size(); i++) {
+                    //do stuff
+                    checked += list.get(checkedPositions.get(i)).getName() + " ";
+                }
+                Toast.makeText(getContext(), "" + checked, Toast.LENGTH_LONG).show();
             }
         });
 
