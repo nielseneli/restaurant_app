@@ -40,7 +40,7 @@ public class CustomerMenuFragment extends Fragment{
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
         Button button = (Button) view.findViewById(R.id.button);
 
-        ArrayList<MenuItem> list = new ArrayList<>();
+        final ArrayList<MenuItem> list = new ArrayList<>();
 
         final CustomerMenuListAdapter customerAdapter = new CustomerMenuListAdapter(getActivity(), list);
 
@@ -69,7 +69,7 @@ public class CustomerMenuFragment extends Fragment{
                     if (ctv.isChecked()) {
                         Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
                         ctv.setChecked(false);
-                        checkedPositions.add(position);
+                        checkedPositions.remove(new Integer(position));
 
                     } else {
                         Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
@@ -83,7 +83,12 @@ public class CustomerMenuFragment extends Fragment{
 
         button.setOnClickListener(new AdapterView.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getContext(), "" + checkedPositions, Toast.LENGTH_LONG).show();
+                String checked = "";
+                for (int i=0; i < checkedPositions.size(); i++) {
+                    //do stuff
+                    checked += list.get(checkedPositions.get(i)).getName() + " ";
+                }
+                Toast.makeText(getContext(), "" + checked, Toast.LENGTH_LONG).show();
             }
         });
 

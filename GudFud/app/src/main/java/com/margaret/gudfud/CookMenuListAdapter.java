@@ -43,6 +43,7 @@ public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
         ButterKnife.bind(this, convertView);
 
         tvText.setText(item.getName());
+        notifyDataSetChanged();
 
         //onClick, you'll eventually go to the item view page.
         tvText.setOnClickListener(new View.OnClickListener() {
