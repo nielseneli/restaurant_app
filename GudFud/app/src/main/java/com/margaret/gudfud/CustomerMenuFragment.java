@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.CheckedTextView;
@@ -37,7 +38,7 @@ public class CustomerMenuFragment extends Fragment{
         View tvView = inflater.inflate(R.layout.menu_item_customer, container, false);
 
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
-        CheckedTextView checkedTextView = (CheckedTextView) tvView.findViewById(R.id.customerCheckedTextView);
+        Button button = (Button) view.findViewById(R.id.button);
 
         ArrayList<MenuItem> list = new ArrayList<>();
 
@@ -53,9 +54,11 @@ public class CustomerMenuFragment extends Fragment{
         customerAdapter.add(testItem1);
         customerAdapter.add(testItem2);
 
+        //source for a fair bit of this: http://kb4dev.com/tutorial/android-listview/android-listview-with-checkbox
         listView.setAdapter(customerAdapter);
         listView.setItemsCanFocus(false);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        final ArrayList<Integer> checkedPositions = new ArrayList<Integer>();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -66,11 +69,21 @@ public class CustomerMenuFragment extends Fragment{
                     if (ctv.isChecked()) {
                         Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
                         ctv.setChecked(false);
+                        checkedPositions.add(position);
+
                     } else {
                         Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
                         ctv.setChecked(true);
+                        checkedPositions.add(position);
+
                     }
 
+            }
+        });
+
+        button.setOnClickListener(new AdapterView.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "" + checkedPositions, Toast.LENGTH_LONG).show();
             }
         });
 
