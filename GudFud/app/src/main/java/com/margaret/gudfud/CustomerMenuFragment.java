@@ -36,7 +36,6 @@ public class CustomerMenuFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_menu_customer, container, false);
-        View tvView = inflater.inflate(R.layout.menu_item_customer, container, false);
 
         ListView listView = (ListView) view.findViewById(R.id.listViewCustomer);
         Button button = (Button) view.findViewById(R.id.button);
