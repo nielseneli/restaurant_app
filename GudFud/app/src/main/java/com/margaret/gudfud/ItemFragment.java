@@ -2,12 +2,14 @@ package com.margaret.gudfud;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import butterknife.ButterKnife;
  * the fragment for editing a menu item (cook)
  */
 public class ItemFragment extends Fragment {
+    public static String ARG_POSITION = "position";
 
     public ItemFragment() {
         // Required empty public constructor
@@ -38,6 +41,17 @@ public class ItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //get the arraylist so we can get the value from the associated position
+        ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
+        final SQLiteDatabase itemsDb = itemsDbHelper.getReadableDatabase();
+        final ArrayList<MenuItem> itemsList = itemsDbHelper.getAllItems();
+
+        //get the bundle which contains the position
+        Bundle b = getArguments();
+        int pos = b.getInt(ARG_POSITION);
+        String itemNameString = itemsList.get(pos).getName();
+        Log.d("Position", "" + itemNameString);
 
         // inflate layout for fragment and for item in ListView in fragment
         final View view = inflater.inflate(R.layout.fragment_item, container, false);
@@ -51,6 +65,8 @@ public class ItemFragment extends Fragment {
 
         final TextView itemName = (TextView) view.findViewById(R.id.itemName);
         final TextView description = (TextView) view.findViewById(R.id.description);
+
+        itemName.setText(itemNameString);
 
         ArrayList<Ingredient> list = new ArrayList<>();
 

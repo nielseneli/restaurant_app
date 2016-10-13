@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -18,12 +17,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-
 /**
  * The fragment for the cook's menu
  */
 public class CookMenuFragment extends Fragment{
+
     private OnFragmentInteractionListener mListener;
 
     public CookMenuFragment() {
@@ -95,8 +93,7 @@ public class CookMenuFragment extends Fragment{
     }
 
     public interface OnFragmentInteractionListener {
-
-        public void onCookMenuFragmentInteraction(Uri uri);
+        public void goToItemFragment(int position);
     }
 
 }

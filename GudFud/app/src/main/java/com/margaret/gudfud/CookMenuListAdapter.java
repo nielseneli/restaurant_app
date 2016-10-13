@@ -49,6 +49,7 @@ public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
         tvText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //go to the item fragment
+                ((MainActivity) getContext()).goToItemFragment(position);
             }
         });
 
