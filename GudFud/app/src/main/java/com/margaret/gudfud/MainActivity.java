@@ -1,12 +1,13 @@
 package com.margaret.gudfud;
 
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CookMenuFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction.add(R.id.fragmentcontainer, defaultFragment);
         fragmentTransaction.commit();
+
+    }
+
+    public void onCookMenuFragmentInteraction(Uri uri){
 
     }
 }
