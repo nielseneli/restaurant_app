@@ -43,13 +43,14 @@ public class ItemFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //get the arraylist so we can get the value from the associated position
-        ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
+        final ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
+
         final SQLiteDatabase itemsDb = itemsDbHelper.getReadableDatabase();
         final ArrayList<MenuItem> itemsList = itemsDbHelper.getAllItems();
 
         //get the bundle which contains the position
         Bundle b = getArguments();
-        int pos = b.getInt(ARG_POSITION);
+        final int pos = b.getInt(ARG_POSITION);
         String itemNameString = itemsList.get(pos).getName();
         Log.d("Position", "" + itemNameString);
 
@@ -72,13 +73,6 @@ public class ItemFragment extends Fragment {
 
         final IngredientsListAdapter ingListAdapter = new IngredientsListAdapter(getActivity(), list);
 
-        Ingredient testIng1 = new Ingredient("rocks");
-        Ingredient testIng2 = new Ingredient("cilantro");
-        Ingredient testIng3 = new Ingredient("a single worm");
-        ingListAdapter.add(testIng1);
-        ingListAdapter.add(testIng2);
-        ingListAdapter.add(testIng3);
-
         listView.setAdapter(ingListAdapter);
 
         editButton.setOnClickListener(new AdapterView.OnClickListener() {
@@ -92,6 +86,7 @@ public class ItemFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 itemName.setText(editText.getText().toString());
+                                itemsDbHelper.editTask(itemsList.get(pos), editText.getText().toString());
                             }
                         })
                         .setNegativeButton("cancel", new DialogInterface.OnClickListener() {

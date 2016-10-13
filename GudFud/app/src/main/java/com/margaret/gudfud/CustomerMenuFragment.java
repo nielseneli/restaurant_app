@@ -96,8 +96,6 @@ public class CustomerMenuFragment extends Fragment{
                         for (int i=0; i < checkedPositions.size(); i++) {
                             checked += list.get(checkedPositions.get(i)).getName() + " ";
                         }
-                        Toast.makeText(getContext(), "" + checked, Toast.LENGTH_LONG).show();
-
                         //get the customer name.
                         String textInput = edittext.getText().toString();
 

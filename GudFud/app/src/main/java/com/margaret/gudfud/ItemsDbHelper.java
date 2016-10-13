@@ -1,5 +1,6 @@
 package com.margaret.gudfud;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -76,6 +77,19 @@ public class ItemsDbHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
+    public boolean deleteTask(MenuItem item) {
+        SQLiteDatabase db = getWritableDatabase();
+        return db.delete(ItemsDbContract.FeedEntry.TABLE_NAME , ItemsDbContract.FeedEntry._ID
+                + "=" + item.getId(), null) > 0;
+    }
+
+    public boolean editTask(MenuItem item, String editstring) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(ItemsDbContract.FeedEntry._ID, item.getId());
+        args.put(ItemsDbContract.FeedEntry.COLUMN_NAME_ITEM, editstring);
+        return db.update(ItemsDbContract.FeedEntry.TABLE_NAME, args, ItemsDbContract.FeedEntry._ID + "=" + item.getId(), null) > 0;
+    }
 
 
 }
