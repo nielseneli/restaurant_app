@@ -48,12 +48,9 @@ public class OrdersDbHelper extends SQLiteOpenHelper {
     public ArrayList<Order> getAllOrders() {
         ArrayList<Order> orders = new ArrayList<>();
 
-        // SELECT * FROM
         String POSTS_SELECT_QUERY =
                 "SELECT * FROM " + OrdersDbContract.FeedEntry.TABLE_NAME;
 
-        // "getReadableDatabase()" and "getWritableDatabase()" return the same object (except under low
-        // disk space scenarios)
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
 
@@ -79,6 +76,38 @@ public class OrdersDbHelper extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<Order> getOrdersSearch(String user) {
+        ArrayList<Order> orders = new ArrayList<>();
 
+        String POSTS_SELECT_QUERY =
+                "SELECT * FROM " + OrdersDbContract.FeedEntry.TABLE_NAME +
+                " WHERE " + OrdersDbContract.FeedEntry.COLUMN_NAME_CUSTOMER + "='" + user + "'";
+        Log.d(TAG, POSTS_SELECT_QUERY);
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Order newOrder = new Order();
+                    newOrder.setCustomer(cursor.getString(cursor.getColumnIndex(OrdersDbContract.FeedEntry.COLUMN_NAME_CUSTOMER)));
+                    newOrder.setOrder(cursor.getString(cursor.getColumnIndex(OrdersDbContract.FeedEntry.COLUMN_NAME_ORDER)));
+                    newOrder.setId(cursor.getLong(cursor.getColumnIndex(ItemsDbContract.FeedEntry._ID)));
+
+                    orders.add(newOrder);
+                } while(cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to get posts from database");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+
+        return orders;
+    }
 
 }
+

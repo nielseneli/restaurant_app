@@ -6,4 +6,8 @@
     <string name="action_orders">Orders</string>
     <string name="action_customerMenu">Customers</string>
     <string name="action_cookMenu">Cooks</string>
+    <string name="action_profile">Profiles</string>
+    <string name="userOrders">Enter the name of a user</string>
+    <string name="enter">Enter</string>
+
 </resources>
