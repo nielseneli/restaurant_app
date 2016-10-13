@@ -13,10 +13,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//
-//        //temporary, delete the whole orders table when the app runs
-//        OrdersDbHelper ordersDbHelper = new OrdersDbHelper(this);
-//        final SQLiteDatabase db = ordersDbHelper.getReadableDatabase();
+
+        OrdersDbHelper ordersDbHelper = new OrdersDbHelper(this);
+        final SQLiteDatabase db = ordersDbHelper.getReadableDatabase();
 
         Fragment defaultFragment = new ItemFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
