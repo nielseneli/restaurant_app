@@ -19,4 +19,16 @@ public class Order {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public long getId() {
+        return id;
+    }
 }

@@ -18,9 +18,10 @@ public class OrdersDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + OrdersDbContract.FeedEntry.TABLE_NAME + " (" +
                     OrdersDbContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    OrdersDbContract.FeedEntry.COLUMN_NAME_CUSTOMER + TEXT_TYPE +
+                    OrdersDbContract.FeedEntry.COLUMN_NAME_CUSTOMER + TEXT_TYPE + "," +
                     OrdersDbContract.FeedEntry.COLUMN_NAME_ORDER + TEXT_TYPE +
                     " )";
+
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + OrdersDbContract.FeedEntry.TABLE_NAME;
 
@@ -46,13 +47,12 @@ public class OrdersDbHelper extends SQLiteOpenHelper {
 
     public ArrayList<Order> getAllOrders() {
         ArrayList<Order> orders = new ArrayList<>();
-        //https://github.com/codepath/android_guides/wiki/Local-Databases-with-SQLiteOpenHelper
 
-        // SELECT * FROM POSTS
+        // SELECT * FROM
         String POSTS_SELECT_QUERY =
                 "SELECT * FROM " + OrdersDbContract.FeedEntry.TABLE_NAME;
 
-        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+        // "getReadableDatabase()" and "getWritableDatabase()" return the same object (except under low
         // disk space scenarios)
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
