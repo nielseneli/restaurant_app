@@ -2,6 +2,7 @@ package com.margaret.gudfud;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 
 public class IngredientsListAdapter extends ArrayAdapter<Ingredient>{
     private ArrayList<Ingredient> ingredients;
+
+    IngredientsDbHelper ingredientsDbHelper = new IngredientsDbHelper(getContext());
+    final SQLiteDatabase db = ingredientsDbHelper.getWritableDatabase();
 
     public IngredientsListAdapter(Context context, ArrayList<Ingredient> ingredients) {
         super(context, 0, ingredients);
@@ -47,6 +51,8 @@ public class IngredientsListAdapter extends ArrayAdapter<Ingredient>{
             public void onClick(View v) {
                 ingredients.remove(position);
                 notifyDataSetChanged();
+
+                ingredientsDbHelper.deleteIng(getItem(position));
             }
         });
 
