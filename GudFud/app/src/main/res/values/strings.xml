@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GudFud</string>
     <string name="order">Order</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="addItem">Add Item</string>
     <string name="action_orders">Orders</string>
     <string name="action_customerMenu">Customers</string>
