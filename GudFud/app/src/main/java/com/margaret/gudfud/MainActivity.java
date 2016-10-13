@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity implements CookMenuFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //temporary, delete the whole orders table when the app runs
         OrdersDbHelper ordersDbHelper = new OrdersDbHelper(this);
         final SQLiteDatabase db = ordersDbHelper.getReadableDatabase();
 
@@ -69,6 +68,14 @@ public class MainActivity extends AppCompatActivity implements CookMenuFragment.
             Fragment ordersFragment = new OrdersFragment();
 
             fragmentTransaction.replace(R.id.fragmentcontainer, ordersFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+
+        if (id == R.id.action_profile) {
+            Fragment profileFragment = new ProfileFragment();
+
+            fragmentTransaction.replace(R.id.fragmentcontainer, profileFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }

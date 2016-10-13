@@ -31,10 +31,6 @@ public class OrdersFragment extends Fragment {
         listView.setAdapter(listAdapter);
 
 
-
-
-
-
         return view;
     }
 
