@@ -1,6 +1,9 @@
 package com.margaret.gudfud;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +36,7 @@ public class IngredientsListAdapter extends ArrayAdapter<Ingredient>{
             view = LayoutInflater.from(getContext()).inflate(R.layout.ingredients_list_item, parent, false);
         }
 
-        TextView textView = (TextView) view.findViewById(R.id.ingItemEditText);
+        final TextView textView = (TextView) view.findViewById(R.id.ingItemEditText);
         textView.setText(ingredient.getIng());
 
         ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteIngButton);
@@ -50,9 +53,30 @@ public class IngredientsListAdapter extends ArrayAdapter<Ingredient>{
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                final EditText editText = new EditText(getContext());
+                editText.setText(ingredient.getIng());
+                builder.setTitle("What ingredient do you actually want?")
+                        .setView(editText)
+                        .setPositiveButton("enter", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ingredient.setIng(editText.getText().toString());
+                                textView.setText(ingredient.getIng());
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                builder.show();
                 notifyDataSetChanged();
             }
         });
+
+
 
         return view;
 
