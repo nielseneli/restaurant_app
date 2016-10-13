@@ -8,7 +8,11 @@ import java.util.ArrayList;
 public class MenuItem {
     private String name;
     private java.util.ArrayList<String> ingredients;
+    private long id;
 
+    public MenuItem() {
+
+    }
     public MenuItem(String name) {
         this.name = name;
     }
@@ -24,6 +28,18 @@ public class MenuItem {
 
     public ArrayList<String> getIngredients() {
         return ingredients;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 

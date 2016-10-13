@@ -1,5 +1,6 @@
 package com.margaret.gudfud;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fragment defaultFragment = new ItemFragment();
+        //temporary, delete the whole orders table when the app runs
+        OrdersDbHelper ordersDbHelper = new OrdersDbHelper(this);
+        final SQLiteDatabase db = ordersDbHelper.getReadableDatabase();
+
+        Fragment defaultFragment = new OrdersFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
