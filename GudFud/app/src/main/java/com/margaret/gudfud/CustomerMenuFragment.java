@@ -66,12 +66,10 @@ public class CustomerMenuFragment extends Fragment{
 
                     CheckedTextView ctv = (CheckedTextView) view.findViewById(R.id.customerCheckedTextView);
                     if (ctv.isChecked()) {
-                        Toast.makeText(getContext(), "now it is unchecked", Toast.LENGTH_SHORT).show();
                         ctv.setChecked(false);
                         checkedPositions.remove(new Integer(position));
 
                     } else {
-                        Toast.makeText(getContext(), "now it is checked", Toast.LENGTH_SHORT).show();
                         ctv.setChecked(true);
                         checkedPositions.add(position);
 
