@@ -126,7 +126,7 @@ Here are the MVP requirements listed:
 
 ## Your grade
 
-## Lab Rubric(165/200 points total):
+## Lab Rubric(155/200 points total):
 #### Proposal (10/10 points)
 * 10 - You did the proposal and a teaching team member checked it off
 
@@ -144,7 +144,7 @@ Here are the MVP requirements listed:
 #### Design/Usability: 10/15 points
 * 10 - A small part of the app was unintuitive to interact with or it was a bit ugly.
 
-#### Quality: 60/75 points
+#### Quality: 55/75 points
 
 ##### Git practices: 10/20 pts
 
