@@ -29,8 +29,10 @@ public class ItemsDbHelper extends SQLiteOpenHelper {
 
     public ItemsDbHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        Log.d("ITEMS DB", "Calling Constructor!");
     }
     public void onCreate(SQLiteDatabase db) {
+        Log.d("ITEMS DB", "Creating Table!");
         db.execSQL(SQL_CREATE_ENTRIES);
     }
 

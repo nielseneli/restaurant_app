@@ -23,6 +23,7 @@ public class CookMenuListAdapter extends ArrayAdapter<MenuItem>{
     @BindView(R.id.cookMenuText) TextView tvText;
     private ArrayList<MenuItem> items;
 
+    // Remember to make stuff private!
     ItemsDbHelper itemsDbHelper = new ItemsDbHelper(getContext());
     final SQLiteDatabase db = itemsDbHelper.getWritableDatabase();
 
