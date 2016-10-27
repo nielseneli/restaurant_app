@@ -105,16 +105,23 @@ Here are the MVP requirements listed:
 ### Cooks
 
 [x] There should be a “Menu” with food items such as Hamburgers, Pizza, etc.
+
 [x] Each food item should have an associated ingredients list. (ie, Pizza -> dough, sauce, cheese)
+
 - Sorta, As I noted before, they're not persistent.
+
 [x] Cooks can add/edit/delete food items from the Menu.
+
 [x] Cooks can add/edit/delete ingredients from each menu item’s ingredients list.
+
 [x] Cooks can view “orders”, which each have an associated customer and food item(s).
+
 [ ] Cooks can mark orders as completed.
 
 ### Customers
 
 [ ] Customers can view the menu and make orders by selecting one or more menu items, and the quantities of each item (i.e., 2 burgers, 4 pizzas, etc.).
+
 [x] Customers should be able to specify their name when placing an order.
 
 ## Your grade
