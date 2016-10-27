@@ -1,6 +1,6 @@
 package com.margaret.gudfud;
 
-
+// Some unused imports
 import android.app.ActionBar;
 import android.net.Uri;
 import android.database.sqlite.SQLiteDatabase;
