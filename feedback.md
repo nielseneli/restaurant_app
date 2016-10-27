@@ -133,8 +133,8 @@ Here are the MVP requirements listed:
 #### Wireframes (30/30 points)
 * 30 - You created wireframes for all fragments/screens of your app. You created a rough design of what your app will look like. You clearly outlined the workflow of your app (fragment transitions, how users navigate the app, where the user enters/receives information)
 
-### Final Deliverable (120/160 points)
-#### Functionality: 50/70 points
+### Final Deliverable (115/160 points)
+#### Functionality: 45/70 points
 ##### Completion: 45/60 points
 * 45 - All major features were implemented. You didn't get to one or two small features.
 
